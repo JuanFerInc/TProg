@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="edEXT Web">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/axis.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-discovery-0.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-logging.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jaxrpc.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/annotations-api.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/catalina-ant.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/catalina-ha.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/catalina.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/ecj-4.13.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/el-api.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/jasper-el.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/jasper.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/jaspic-api.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/jsp-api.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/servlet-api.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-api.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-i18n-cs.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-i18n-de.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-i18n-ko.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-i18n-pt-BR.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-i18n-ru.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-jni.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-util.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../../Downloads/apache-tomcat-9.0.27/lib/websocket-api.jar"/>
+    </path>
+    <path id="edEXT Web.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="edEXT Web.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+              	<target name="war" description="Bundles the application as a WAR file" depends="clean, build">
+              	    <mkdir dir="WebContent/WEB-INF/classes"/>
+              	     
+              	    <copy includeemptydirs="false" todir="WebContent/WEB-INF/classes">
+              	            <fileset dir="build/classes">
+              	            <include name="**/*.class"/>
+              	            </fileset>
+              	    </copy>
+              	     
+              	    <war destfile="edEXTWeb.war"
+              	        basedir="WebContent"
+              	        needxmlfile="false">
+              	    </war>
+              	</target>
+</project>
